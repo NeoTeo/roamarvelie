@@ -47,9 +47,9 @@
   (split (.myGoddamnDate js/window) #"/")
 )
 
-(defn main []
+(defn main [{:keys [block-uid]} & args]
   (let [today (day-month-year)]
         [:b 
-         (arvelie-year-str (nth today 2) 2021)
+         (arvelie-year-str (nth args 0) (nth today 2))
          (gregorian-to-arvelie (int (nth today 0)) (int (nth today 1)))]
 ))

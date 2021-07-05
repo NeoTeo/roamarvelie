@@ -1,4 +1,6 @@
 (ns teo_utils)
+(use '[clojure.string :only (split)])
+
 (defn monthdays [month]
   (cond 
     (= month 2) 28
@@ -41,6 +43,13 @@
   (str (num-to-letter (int(/ doy 14))) (arvelie-day-str (rem doy 14))))
 )
 
-(defn main [ {:keys [block-uid]} & args ]
-  [:h1 (arvelie-year-str 2021 2021)(gregorian-to-arvelie (nth args 0) (nth args 1))]
+(defn day-month-year []
+  (split (.myGoddamnDate js/window) #"/")
 )
+
+(defn main []
+  (let [today (day-month-year)]
+        [:b 
+         (arvelie-year-str (nth today 2) 2021)
+         (gregorian-to-arvelie (int (nth today 0)) (int (nth today 1)))]
+))

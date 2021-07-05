@@ -43,6 +43,7 @@
   (str (num-to-letter (int(/ doy 14))) (arvelie-day-str (rem doy 14))))
 )
 
+;; depends on a javascript function. Yuck!
 (defn day-month-year []
   (split (.myGoddamnDate js/window) #"/")
 )

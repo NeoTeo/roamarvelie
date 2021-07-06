@@ -48,9 +48,14 @@
   (split (.myGoddamnDate js/window) #"/")
 )
 
+
+;; args are: roam-date start-of-journal-year
+;; The roam date format is [:block/uid mm-dd-yyyy]
 (defn main [{:keys [block-uid]} & args]
   (let [today (day-month-year)]
+    (let [arg-date (split (nth (nth args 0) 1) #"-")]
         [:b 
-         (arvelie-year-str (nth args 0) (nth today 2))
-         (gregorian-to-arvelie (int (nth today 0)) (int (nth today 1)))]
-))
+         (arvelie-year-str (nth args 1) (nth today 2))
+	;; since roam still does us style date we pass into func in reverse order
+         (gregorian-to-arvelie (int (nth arg-date 1)) (int (nth arg-date 0)))]
+)))
